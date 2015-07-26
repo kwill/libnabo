@@ -7,11 +7,16 @@
 get_filename_component(libnabo_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 set(libnabo_INCLUDE_DIRS "@libnabo_include_dirs@")
 
-if (CMAKE_COMPILER_IS_GNUCC)
-  set(libnabo_LIBRARIES @libnabo_library@ gomp)
-else(CMAKE_COMPILER_IS_GNUCC)
-  set(libnabo_LIBRARIES @libnabo_library@)
-endif(CMAKE_COMPILER_IS_GNUCC)
+# FIXME: commented out for MinGW
+#if (CMAKE_COMPILER_IS_GNUCC)
+#  set(libnabo_LIBRARIES @libnabo_library@ gomp)
+#else(CMAKE_COMPILER_IS_GNUCC)
+#  set(libnabo_LIBRARIES @libnabo_library@)
+#endif(CMAKE_COMPILER_IS_GNUCC)
+
+# instead, just set libraries, ignore gomp
+# FIXME: add gomp if (GCC and not MinGW)
+set(libnabo_LIBRARIES @libnabo_library@)
 
 # This causes catkin_simple to link against these libraries
 set(libnabo_FOUND_CATKIN_PROJECT true)
