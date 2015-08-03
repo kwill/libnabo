@@ -111,7 +111,10 @@ set(NABO_SRC
 set(SHARED_LIBS "false" CACHE BOOL "To build shared (true) or static (false) library")
 if (SHARED_LIBS)
 	add_library(${LIB_NAME} SHARED ${NABO_SRC})
-	install(TARGETS ${LIB_NAME} LIBRARY DESTINATION lib)
+	install(TARGETS ${LIB_NAME}
+				ARCHIVE DESTINATION lib
+				LIBRARY DESTINATION lib
+				RUNTIME DESTINATION bin)
 else(SHARED_LIBS)
 	add_library(${LIB_NAME} ${NABO_SRC})
 	add_definitions(-fPIC)
